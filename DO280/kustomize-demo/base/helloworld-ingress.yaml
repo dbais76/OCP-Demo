@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: helloworld-ingress
@@ -10,7 +10,10 @@ spec:
     http:
       paths:
       - path: /hello
+        pathType: Prefix
         backend:
-          serviceName: helloworld
-          servicePort: 5000
+          service:
+            name: helloworld
+            port: 
+              number: 5000
 

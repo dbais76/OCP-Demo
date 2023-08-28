@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: helloworld-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+  rules:
+  - host: hello-v2.apps.cluster-f86f7.f86f7.sandbox1217.opentlc.com 
+    http:
+      paths:
+      - path: /hello
+        backend:
+          serviceName: helloworld
+          servicePort: 5000
+

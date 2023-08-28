@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: my-demo
+  name: my-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-demo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: my-demo
+    spec:
+      containers:
+      - image: quay.io/dbais76/examples-helloworld-v1:latest
+        name: examples-helloworld-v1
+        resources:
+          requests:      
+            cpu: "100m"

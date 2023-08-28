@@ -10,7 +10,7 @@ spec:
     spec:
       containers:
       - name: helloworld
-        image: docker.io/istio/examples-helloworld-v2
+        image: quay.io/dbais76/examples-helloworld-v2:latest
         resources:
           requests:
             cpu: "200m"

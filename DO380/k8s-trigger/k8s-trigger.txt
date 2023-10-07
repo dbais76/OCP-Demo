@@ -15,6 +15,9 @@ oc import-image demo-trigger
 
 REPO:
 
- dbais76 / k8s-trigger-demo 
+dbais76 / k8s-trigger-demo 
 
+Dockerfile folder:
 
+~/demo-trigger
+a81cf8c74513 & b778007dbeea

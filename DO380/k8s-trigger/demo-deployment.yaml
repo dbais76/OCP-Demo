@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demo-trigger
+  name: demo-trigger
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-trigger
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: demo-trigger
+    spec:
+      containers:
+      - image: quay.io/dbais76/k8s-trigger-demo:latest
+        name: k8s-trigger-demo
+        resources: {}

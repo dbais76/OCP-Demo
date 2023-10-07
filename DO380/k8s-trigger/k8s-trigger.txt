@@ -1,0 +1,20 @@
+kubectl create deployment demo-trigger --image quay.io/dbais76/k8s-trigger-demo:latest -o yaml --dry-run=client
+kubectl create deployment demo-trigger --image quay.io/dbais76/k8s-trigger-demo:latest 
+oc expose deploy/demo-trigger --port=8080 --target-port=8080
+
+oc expose svc demo-trigger
+oc import-image demo-trigger --from quay.io/dbais76/k8s-trigger-demo:latest --confirm
+oc set triggers deploy/demo-trigger --from-image demo-trigger:latest -c k8s-trigger-demo
+
+oc describe deployment/demo-trigger | less
+
+## Push the updated image from Podman to Quay.io and then update the IS
+oc import-image demo-trigger
+
+
+
+REPO:
+
+ dbais76 / k8s-trigger-demo 
+
+

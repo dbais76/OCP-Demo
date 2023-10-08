@@ -8,6 +8,7 @@
       validate_certs: no
     register: k8s_auth_result
 
+    
   - name: deploy hello-world pod
     k8s:
       state: present
@@ -46,7 +47,7 @@
                   limits:
                     cpu: 600m
                     memory: 128Mi
-  - name: create service
+  - name: create service using service inline definition
     k8s:
       state: present
       apply: yes
@@ -70,7 +71,7 @@
           type: ClusterIP
              
      
-  - name: Create a Route using the definition from a file
+  - name: Create a Route exposing svc
     redhat.openshift.openshift_route:
       service: hello-svc
       host: https://api.ocp4.example.com:6443
@@ -78,4 +79,7 @@
       namespace: ansible-ocp
       validate_certs: no
     register: route
-    
+  
+  - name: Ensure the route is displayed
+    debug:
+      msg: "The application can be accessed using the url http://{{ route['result']['spec']['host'] }}"

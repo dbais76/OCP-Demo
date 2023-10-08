@@ -6,4 +6,5 @@ kubectl get svc -o=custom-columns="Service Name":.metadata.name,"SVC IP":.spec.c
 kubectl get svc -A -o jsonpath='{"\n"}{range .items[?(@.spec.type==ExternalName)]}''{.metadata.name}{"\t"}{.spec.clusterIP}{"\n"}'
 kubectl get pods  -o=jsonpath='{range .items[?(@.status.containerStatuses[*].started=='false')]} {.metadata.name}{"\n"}{end}'
 kubectl get pods  -o=jsonpath='{range .items[?(@.status.containerStatuses[*].started=='false')]} {.metadata.name}{"\t"}{.status.containerStatuses[*].state.waiting.reason}{"\n"}{end}'
+kubectl get pods  -o=jsonpath='{range .items[?(@.status.containerStatuses[*].started=='false')]} {.metadata.name}{"\t"}{.status.containerStatuses[*].state.waiting.reason}{"\n"}{end}' | xargs kubectl delete pod
 

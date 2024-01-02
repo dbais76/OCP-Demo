@@ -1,0 +1,1 @@
+oc get svc  -o jsonpath='{"\n"}{range .items[?(@.spec.type=="NodePort")]}''{.metadata.name}{"\t"}{.spec.clusterIP}{"\n"}'

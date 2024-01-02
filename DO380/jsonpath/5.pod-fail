@@ -1,0 +1,2 @@
+#oc project pod-test 
+oc get pods  -o jsonpath='{range .items[?(@.status.containerStatuses[*].started==false)]}''{.metadata.name}''{"\t"}''{.status.containerStatuses[*].state.waiting.reason}}''{end}''{"\n"}'

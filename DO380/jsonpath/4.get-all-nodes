@@ -1,0 +1,1 @@
+oc get nodes -o jsonpath='{.items[*].metadata.name}{"\t"}{.items[*].status.addresses[0].address}{"\n"}'

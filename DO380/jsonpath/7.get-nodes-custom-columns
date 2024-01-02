@@ -1,0 +1,1 @@
+oc get nodes -o=custom-columns="Node Name":.metadata.name,"IP ADDRESS":.status.addresses[0].address

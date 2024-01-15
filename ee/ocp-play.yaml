@@ -41,7 +41,7 @@
     kubernetes.core.k8s_info:
       kind: Pod
       label_selectors:
-        - app = hello
+        - app = hello-openshift
     register: pod_list
      
   - name: Create a Route exposing svc

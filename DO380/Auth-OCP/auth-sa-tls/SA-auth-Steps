@@ -1,0 +1,11 @@
+oc create sa health-robot
+oc adm policy add-cluster-role-to-user cluster-reader system:serviceaccount:auth-tls:health-robot
+HEALTHROBOT_TOKEN=$(oc create token -n auth-tls health-robot --duration 604800s)
+echo $HEALTHROBOT_TOKEN
+oc config set-credentials health-robot --token $HEALTHROBOT_TOKEN --kubeconfig robot-cert/health-robot.config
+oc config set-cluster $(oc config view -o jsonpath='{.clusters[0].name}') --server https://api.ocp4.example.com:6443 --kubeconfig robot-cert/health-robot.config
+oc config set-context health-robot --cluster $(oc config view -o jsonpath='{.clusters[0].name}') --namespace auth-tls --user health-robot --kubeconfig robot-cert/health-robot.config
+oc config use-context health-robot --kubeconfig robot-cert/health-robot.config
+oc whoami --kubeconfig robot-cert/health-robot.config
+oc auth can-i create project -A --as system:serviceaccount:auth-tls:health-robot
+oc auth can-i get pods -A --as system:serviceaccount:auth-tls:health-robot

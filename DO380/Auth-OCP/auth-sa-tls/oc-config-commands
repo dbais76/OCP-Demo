@@ -1,0 +1,9 @@
+Use the followinvg oc config subcommands to manually configure your kubeconfig files:
+• set-cluster: Creates a cluster entry in the kubeconfig file. This subcommand accepts 
+different cluster parameters as the server IP or the CA file.
+• set-credentials: Creates a user entry in the kubeconfig file. This subcommand accepts
+different user parameters as the username, the user password, or the token.
+• set-context: Creates a context entry in the kubeconfig file. Use this subcommand to
+define a context to specify a combination of a user and a cluster. You can also set the OpenShift
+project.
+• use-context: Sets the current context.

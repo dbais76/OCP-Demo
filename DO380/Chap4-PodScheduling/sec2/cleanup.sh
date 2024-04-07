@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ $1 -eq env ]
+if [ $1 = "env" ];
   then
     echo "Reverting node labels !!    "
     oc label node worker02 env-

@@ -1,0 +1,4 @@
+#!/bin/bash 
+oc get pod -n openshift-cluster-node-tuning-operator | 
+## 
+oc exec $tuned_pod -n openshift-cluster-node-tuning-operator -- find /usr/lib/tuned/openshift{,-control-plane,-node} -name tuned.conf -exec grep -H ^ {} \;

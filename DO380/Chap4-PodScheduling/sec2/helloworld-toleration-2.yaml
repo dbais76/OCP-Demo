@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloworld-node
+  name: helloworld-taint
   labels:
     version: v1
 spec:
@@ -17,7 +17,12 @@ spec:
         version: v1
     spec:
       nodeSelector:
-        env: dev
+        env: qa
+      tolerations:
+      - key: "data"
+        value: "secret-load"
+        operator: "Equal"
+        effect: "NoSchedule"   
       containers:
       - name: helloworld
         image: quay.io/dbais76/examples-helloworld-v1:latest

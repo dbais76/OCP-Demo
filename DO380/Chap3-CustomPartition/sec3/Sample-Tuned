@@ -1,0 +1,39 @@
+### TUNED PROFILE FOR HUGE PAGES
+
+apiVersion: tuned.openshift.io/v1
+kind: Tuned
+metadata:
+  name: hugepages 
+  namespace: openshift-cluster-node-tuning-operator
+spec:
+  profile: 
+  - data: |
+      [main]
+      summary=Boot time configuration for hugepages
+      include=openshift-node
+      [bootloader]
+      cmdline_openshift_node_hugepages=hugepagesz=2M hugepages=50 
+    name: openshift-node-hugepages
+
+  recommend:
+  - machineConfigLabels: 
+      machineconfiguration.openshift.io/role: "worker-hp"
+    priority: 30
+    profile: openshift-node-hugepages
+    
+    
+### MCP FOR NODES FOR HP
+
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfigPool
+metadata:
+  name: worker-hp
+  labels:
+    worker-hp: ""
+spec:
+  machineConfigSelector:
+    matchExpressions:
+      - {key: machineconfiguration.openshift.io/role, operator: In, values: [worker,worker-hp]}
+  nodeSelector:
+    matchLabels:
+      node-role.kubernetes.io/worker-hp: ""

@@ -1,0 +1,7 @@
+oc adm taint nodes worker02 type=custom-apps:NoSchedule
+
+oc describe node worker01 | grep -i taints
+
+oc create -f deployment-taints.yml  <deployment file with Tolerations set )
+
+oc get pods -o wide

@@ -7,5 +7,5 @@ resources:
 - ../../base
 configMapGenerator:
 - literals:
-  - TestKey=UpdateVal
-  name: testconfig
+  - k=v
+  name: cm1

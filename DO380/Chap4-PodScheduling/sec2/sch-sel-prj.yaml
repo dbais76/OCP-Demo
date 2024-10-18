@@ -1,0 +1,8 @@
+apiVersion: project.openshift.io/v1
+kind: Project
+metadata:
+  annotations:
+    openshift.io/node-selector: type=user-node
+  labels:
+    kubernetes.io/metadata.name: sch-sel-prj
+  name: sch-sel-prj
